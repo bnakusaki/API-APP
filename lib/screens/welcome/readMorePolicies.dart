@@ -25,7 +25,7 @@ class ReadMore extends StatelessWidget {
               centerTitle: true,
               flexibleSpace: const FlexibleSpaceBar(
                 background: Image(
-                  image: AssetImage('assets/images/image1.webp'),
+                  image: AssetImage('assets/images/image2.png'),
                   fit: BoxFit.cover,
                 ),
               ),

@@ -37,23 +37,24 @@ class _ApiAppState extends State<ApiApp> {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.white,
-        brightness: Brightness.dark,
-
-        //Default font family.
-        // fontFamily: 'Georgia',
+        primaryColor: Colors.yellow,
+        brightness: Brightness.light,
+        useMaterial3: true,
 
         //Text themes.
         textTheme: TextTheme(
           displayLarge: GoogleFonts.robotoMono(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 50,
             fontWeight: FontWeight.bold,
           ),
           titleLarge: GoogleFonts.raleway(
-              color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
-          bodyMedium: GoogleFonts.raleway(color: Colors.white, fontSize: 20),
+              color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
+          bodyMedium: GoogleFonts.raleway(color: Colors.black, fontSize: 20),
+          bodyLarge: GoogleFonts.raleway(
+              color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold),
         ),
       ),
       home: const WelcomeScreen(),

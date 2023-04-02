@@ -1,3 +1,4 @@
+import 'package:apiapp/screens/home.dart';
 import 'package:apiapp/screens/welcome/introductoryScreen.dart';
 import 'package:apiapp/screens/welcome/readMorePolicies.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -7,33 +8,43 @@ import 'package:apiapp/main.dart' as main;
 
 ////////////////////////////////////////////////////////////////////////////////
 DecorationImage background = const DecorationImage(
-  image: AssetImage('assets/images/image1.webp'),
+  image: AssetImage('assets/images/image2.png'),
   fit: BoxFit.cover,
 );
 
-Color tint = Colors.black45;
+// Color tint = Colors.black45;
 
 EdgeInsets screenPad = const EdgeInsets.symmetric(horizontal: 20, vertical: 20);
 
-List<dynamic> endpoints = [const ReadMore(), const IntroductoryScreen()];
+List<dynamic> endpoints = [
+  const ReadMore(),
+  const IntroductoryScreen(),
+  const HomeScreen(),
+];
 ////////////////////////////////////////////////////////////////////////////////
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({
     super.key,
   });
 
   @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     context.setLocale(main.localeState);
+
     return Container(
       decoration: BoxDecoration(
         image: background,
       ),
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: tint,
+          backgroundColor: Colors.transparent,
           body: Padding(
             padding: screenPad,
             child: Stack(
@@ -42,9 +53,12 @@ class WelcomeScreen extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   child: Semantics(
                     readOnly: true,
-                    child: Text(
-                      'APY',
-                      style: Theme.of(context).textTheme.displayLarge,
+                    child: Hero(
+                      tag: 'hero1',
+                      child: Text(
+                        'APY',
+                        style: Theme.of(context).textTheme.displayLarge,
+                      ),
                     ),
                   ),
                 ),
@@ -87,7 +101,7 @@ class WelcomeScreen extends StatelessWidget {
                               child: Text(
                                 'read_more'.tr(),
                                 style: GoogleFonts.delius(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
