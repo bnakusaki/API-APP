@@ -1,28 +1,27 @@
-import 'package:apiapp/screens/authentication/signIn.dart';
 import 'package:apiapp/screens/welcome/privacyPolicies.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   bool obscure = true;
-
+  bool showPrompt = false;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 9, 40, 66),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(40, 80, 40, 0),
+        padding: const EdgeInsets.fromLTRB(40, 70, 40, 0),
         child: SingleChildScrollView(
           child: Stack(
             children: [
@@ -38,7 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           style: const TextStyle(color: Colors.black),
                           children: [
                             TextSpan(
-                              text: 'sus_txt0'.tr(),
+                              text: 'sis_txt0'.tr(),
                               style: const TextStyle(
                                 color: Colors.tealAccent,
                                 fontSize: 30,
@@ -56,28 +55,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       _buildTextField(
-                        upperRoom: 80,
-                        lowerRoom: 20,
-                        hintText: 'sus_txt2'.tr(),
-                        type: 'name',
-                      ),
-                      _buildTextField(
-                        upperRoom: 0,
+                        upperRoom: 130,
                         lowerRoom: 20,
                         hintText: 'sus_txt3'.tr(),
                         type: 'email',
                       ),
                       _buildTextField(
                         upperRoom: 0,
-                        lowerRoom: 20,
+                        lowerRoom: 8,
                         hintText: 'sus_txt4'.tr(),
                         type: 'password',
                       ),
-                      _buildTextField(
-                        upperRoom: 0,
-                        lowerRoom: 20,
-                        hintText: 'Confirm password'.tr(),
-                        type: 'confirmPassword',
+                      SizedBox(
+                        width: screenWidth - 80,
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                showPrompt = true;
+                              });
+                            },
+                            child: Text(
+                              'sis_txt1'.tr(),
+                              textAlign: TextAlign.right,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                       InkWell(
                         child: Container(
@@ -89,7 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           child: Center(
                             child: Text(
-                              'sus_txt5'.tr(),
+                              'sus_txt7'.tr(),
                               style: const TextStyle(
                                 color: Color.fromARGB(255, 9, 40, 66),
                                 fontWeight: FontWeight.bold,
@@ -110,7 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: Row(
                             children: [
                               Text(
-                                'sus_txt6'.tr(),
+                                'sis_txt2'.tr(),
                                 style: const TextStyle(
                                   fontSize: 15,
                                   color: Colors.white70,
@@ -118,16 +126,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SignInScreen(),
-                                    ),
-                                  );
+                                  Navigator.pop(context);
                                 },
                                 child: Text(
-                                  'sus_txt7'.tr(),
+                                  'sis_txt3'.tr(),
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
@@ -163,9 +165,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => const Policy(
-                                            type: 'terms',
-                                          ),
+                                          builder: (context) =>
+                                              const Policy(type: 'terms'),
                                         ),
                                       );
                                     },
@@ -187,12 +188,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   ),
                                   TextButton(
                                     onPressed: () {
-                                      Navigator.push(
-                                        context,
+                                      Navigator.of(context).push(
                                         MaterialPageRoute(
-                                          builder: (context) => const Policy(
-                                            type: 'privacy',
-                                          ),
+                                          builder: (context) =>
+                                              const Policy(type: 'policy'),
                                         ),
                                       );
                                     },
@@ -215,6 +214,72 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
               ),
+              showPrompt
+                  ? Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(30)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(30),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        showPrompt = false;
+                                      });
+                                    },
+                                    icon: const Icon(Icons.cancel)),
+                              ),
+                              Text(
+                                'Have you forgotten your password?',
+                                style: Theme.of(context).textTheme.titleLarge,
+                              ),
+                              Text(
+                                'Don\'t worry, write the email with which you are registered and we will send you the steps you must follow to change your password.',
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              _buildTextField(
+                                upperRoom: 20,
+                                lowerRoom: 20,
+                                hintText: 'email',
+                                type: 'forgotEmail',
+                              ),
+                              InkWell(
+                                child: Container(
+                                  height: 60,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.tealAccent,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Send'.tr(),
+                                      style: const TextStyle(
+                                        color: Color.fromARGB(255, 9, 40, 66),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                onTap: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    context.go('/homeScreen');
+                                  }
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  : const SizedBox(),
             ],
           ),
         ),
@@ -235,17 +300,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         width: MediaQuery.of(context).size.width - 80,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Colors.white,
+          color: type == 'forgotEmail' ? Colors.black12 : Colors.white,
         ),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: TextFormField(
             cursorColor: const Color.fromARGB(255, 9, 40, 66),
             cursorHeight: 40,
-            obscureText: ((type == 'password' || type == 'confirmPassword') &&
-                    obscure == true)
-                ? true
-                : false,
+            obscureText: type == 'password' && obscure == true ? true : false,
             style: const TextStyle(
               fontSize: 20,
               color: Color.fromARGB(255, 9, 40, 66),
@@ -254,7 +316,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 border: InputBorder.none,
                 hintText: hintText,
                 alignLabelWithHint: true,
-                suffixIcon: type == 'password' || type == 'confirmPassword'
+                suffixIcon: type == 'password'
                     ? IconButton(
                         onPressed: () {
                           setState(() {
@@ -270,8 +332,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 return 'enter name';
               } else if (type == 'password' && value!.isEmpty) {
                 return 'enter password';
-              } else if (type == 'confirmPassword' && value!.isEmpty) {
-                return 'Confirm password';
               }
               return null;
             },

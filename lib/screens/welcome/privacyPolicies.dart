@@ -2,33 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:apiapp/main.dart' as main;
 
-class ReadMore extends StatelessWidget {
-  const ReadMore({super.key});
+class Policy extends StatelessWidget {
+  final String type;
+  const Policy({super.key, required this.type});
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     context.setLocale(main.localeState);
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 9, 40, 66),
       body: Scrollbar(
         child: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
+              backgroundColor: Colors.tealAccent,
               pinned: true,
               stretch: true,
               expandedHeight: screenHeight * 0.3,
               title: Text(
-                'title1'.tr(),
+                (type == 'privacy') ? 'pp_txt0'.tr() : 'sus_txt9'.tr(),
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               floating: true,
               centerTitle: true,
-              flexibleSpace: const FlexibleSpaceBar(
-                background: Image(
-                  image: AssetImage('assets/images/image2.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
             ),
             SliverToBoxAdapter(
               child: SizedBox(
@@ -46,12 +43,12 @@ class ReadMore extends StatelessWidget {
                               Maecenas mattis, metus sed fermentum ullamcorper, augue mi egestas arcu, non rutrum dolor magna sodales enim. In hac habitasse platea dictumst. Donec pulvinar neque turpis, ut vehicula diam fringilla et. Nullam mollis velit quis tincidunt venenatis. Maecenas interdum faucibus tempor. Cras fermentum finibus leo, at pharetra mauris molestie vitae. Donec ac sem id nibh efficitur vestibulum.
                               
                               Pellentesque mi libero, tincidunt maximus consectetur ac, porttitor vel risus. Aliquam vehicula purus ut dui interdum, sed mollis erat volutpat. Duis massa diam, varius quis ipsum a, iaculis euismod ligula. Donec sed quam ex. Aenean luctus sapien nec dui ultrices, sed ullamcorper est maximus. Suspendisse neque lorem, placerat in iaculis laoreet, convallis ut ante. Maecenas a condimentum arcu. Phasellus posuere lacus feugiat, lacinia erat ut, volutpat arcu. Nullam ultricies, felis dignissim lobortis venenatis, libero justo faucibus nunc, quis imperdiet nulla magna vel nisi. Sed in arcu vehicula, sollicitudin sem et, eleifend nulla. Integer in nunc consectetur, laoreet justo quis, porta risus. Nullam sollicitudin congue lacus, vel dignissim leo rhoncus et. Nunc rhoncus vel enim quis imperdiet.""",
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme.of(context).textTheme.displaySmall,
                     ),
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

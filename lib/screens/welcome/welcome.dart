@@ -1,10 +1,9 @@
-import 'package:apiapp/screens/home.dart';
-import 'package:apiapp/screens/welcome/introductoryScreen.dart';
-import 'package:apiapp/screens/welcome/readMorePolicies.dart';
+import 'package:apiapp/screens/welcome/privacyPolicies.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:apiapp/main.dart' as main;
+import 'package:go_router/go_router.dart';
 
 ////////////////////////////////////////////////////////////////////////////////
 DecorationImage background = const DecorationImage(
@@ -16,31 +15,21 @@ DecorationImage background = const DecorationImage(
 
 EdgeInsets screenPad = const EdgeInsets.symmetric(horizontal: 20, vertical: 20);
 
-List<dynamic> endpoints = [
-  const ReadMore(),
-  const IntroductoryScreen(),
-  const HomeScreen(),
-];
 ////////////////////////////////////////////////////////////////////////////////
 
-class WelcomeScreen extends StatefulWidget {
+class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({
     super.key,
   });
 
-  @override
-  State<WelcomeScreen> createState() => _WelcomeScreenState();
-}
-
-class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     context.setLocale(main.localeState);
 
     return Container(
-      decoration: BoxDecoration(
-        image: background,
+      decoration: const BoxDecoration(
+        color: Colors.tealAccent,
       ),
       child: SafeArea(
         child: Scaffold(
@@ -53,91 +42,91 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   alignment: Alignment.topCenter,
                   child: Semantics(
                     readOnly: true,
-                    child: Hero(
-                      tag: 'hero1',
-                      child: Text(
-                        'APY',
-                        style: Theme.of(context).textTheme.displayLarge,
-                      ),
+                    child: Text(
+                      'APY',
+                      style: Theme.of(context).textTheme.displayLarge,
                     ),
                   ),
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Semantics(
-                          readOnly: true,
-                          child: _buildPrivacyMessage(
-                            message: 'msg1'.tr(),
-                            textStyle: Theme.of(context).textTheme.titleLarge!,
-                          ),
-                        ),
-                      ),
-                      const Divider(
-                        height: 10,
-                      ),
-                      Semantics(
+                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Semantics(
                         readOnly: true,
                         child: _buildPrivacyMessage(
-                          message: 'msg2'.tr(),
-                          textStyle: Theme.of(context).textTheme.bodyMedium!,
+                          message: 'ws_txt0'.tr(),
+                          textStyle: Theme.of(context).textTheme.titleLarge!,
                         ),
                       ),
-                      Semantics(
-                        button: true,
-                        child: SizedBox(
+                    ),
+                    const Divider(
+                      height: 10,
+                      color: Color.fromARGB(255, 9, 40, 66),
+                    ),
+                    Semantics(
+                      readOnly: true,
+                      child: _buildPrivacyMessage(
+                        message: 'ws_txt1'.tr(),
+                        textStyle: Theme.of(context).textTheme.bodyMedium!,
+                      ),
+                    ),
+                    Semantics(
+                      button: true,
+                      child: SizedBox(
+                        width: screenWidth - 40,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const Policy(
+                                    type: 'privacy',
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              'ws_txt2'.tr(),
+                              style: GoogleFonts.delius(
+                                color: const Color.fromARGB(255, 9, 40, 66),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Semantics(
+                      button: true,
+                      child: InkWell(
+                        onTap: () {
+                          return context.go('/introScreen');
+                        },
+                        child: Container(
+                          height: 50,
                           width: screenWidth - 40,
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: TextButton(
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .push(_createPageRoute(endpointIndex: 0));
-                              },
-                              child: Text(
-                                'read_more'.tr(),
-                                style: GoogleFonts.delius(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 9, 40, 66),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'ws_txt3'.tr(),
+                              style: const TextStyle(
+                                fontFamily: 'Nunito_Sans',
+                                color: Colors.tealAccent,
+                                fontSize: 25,
                               ),
                             ),
                           ),
                         ),
                       ),
-                      Semantics(
-                        button: true,
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.of(context)
-                                .push(_createPageRoute(endpointIndex: 1));
-                          },
-                          child: Container(
-                            height: 50,
-                            width: screenWidth - 40,
-                            decoration: BoxDecoration(
-                              color: Colors.black87,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'start_msg'.tr(),
-                                style: GoogleFonts.robotoMono(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ]),
                 ),
               ],
             ),
@@ -154,26 +143,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Text(
       message,
       style: textStyle,
-    );
-  }
-
-  PageRouteBuilder _createPageRoute({
-    required int endpointIndex,
-  }) {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) =>
-          endpoints[endpointIndex],
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(1.0, 0.0);
-        const end = Offset.zero;
-        final tween = Tween(begin: begin, end: end);
-        final offsetAnimation = animation.drive(tween);
-
-        return SlideTransition(
-          position: offsetAnimation,
-          child: child,
-        );
-      },
     );
   }
 }
