@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "202031400462",
+    "project_id": "signup-page-beta",
+    "storage_bucket": "signup-page-beta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202031400462:android:50f7b507aa3e421f629e5f",
+        "android_client_info": {
+          "package_name": "com.akufel.apiapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202031400462-70h8lk31kqdltjh0kjqstsu3r2skdvaf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJQ5YpVu4EYE5Je2Rn73B0SEVoRZ0iCsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202031400462-70h8lk31kqdltjh0kjqstsu3r2skdvaf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
