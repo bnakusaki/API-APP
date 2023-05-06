@@ -1,6 +1,7 @@
 import 'package:apiapp/screens/welcome/privacyPolicies.dart';
 // import 'package:easy_localization/easy_localization.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,6 +16,9 @@ class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   bool obscure = true;
   bool showPrompt = false;
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -37,7 +41,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           style: TextStyle(color: Colors.black),
                           children: [
                             TextSpan(
-                              text: 'sis_txt0',
+                              text: 'Login\n\n',
                               style: TextStyle(
                                 color: Colors.tealAccent,
                                 fontSize: 30,
@@ -45,7 +49,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                             ),
                             TextSpan(
-                              text: 'sus_txt1',
+                              text: 'Fill in you details and lets move 😜.',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
@@ -57,14 +61,16 @@ class _SignInScreenState extends State<SignInScreen> {
                       _buildTextField(
                         upperRoom: 130,
                         lowerRoom: 20,
-                        hintText: 'sus_txt3',
+                        hintText: 'email',
                         type: 'email',
+                        controller: emailController,
                       ),
                       _buildTextField(
                         upperRoom: 0,
                         lowerRoom: 8,
-                        hintText: 'sus_txt4',
+                        hintText: 'Password',
                         type: 'password',
+                        controller: passwordController,
                       ),
                       SizedBox(
                         width: screenWidth - 80,
@@ -77,7 +83,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               });
                             },
                             child: const Text(
-                              'sis_txt1',
+                              'Have you forgotten your password?',
                               textAlign: TextAlign.right,
                               style: TextStyle(
                                 color: Colors.white,
@@ -97,7 +103,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           child: const Center(
                             child: Text(
-                              'sus_txt7',
+                              'Log in',
                               style: TextStyle(
                                 color: Color.fromARGB(255, 9, 40, 66),
                                 fontWeight: FontWeight.bold,
@@ -107,7 +113,13 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
-                            context.go('/homeScreen');
+                            // context.go('/homeScreen');
+
+                            FirebaseAuth.instance
+                                .signInWithEmailAndPassword(
+                                    email: emailController.text,
+                                    password: passwordController.text)
+                                .then((value) => context.go('/homeScreen'));
                           }
                         },
                       ),
@@ -118,7 +130,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           child: Row(
                             children: [
                               const Text(
-                                'sis_txt2',
+                                'I don\'t have an account,',
                                 style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.white70,
@@ -129,7 +141,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   Navigator.pop(context);
                                 },
                                 child: const Text(
-                                  'sis_txt3',
+                                  'Create acc.',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
@@ -149,7 +161,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             const Text(
-                              'sus_txt8',
+                              'Terms of Use',
                               style: TextStyle(
                                 color: Colors.white70,
                                 fontSize: 15,
@@ -245,11 +257,11 @@ class _SignInScreenState extends State<SignInScreen> {
                                 style: Theme.of(context).textTheme.titleMedium,
                               ),
                               _buildTextField(
-                                upperRoom: 20,
-                                lowerRoom: 20,
-                                hintText: 'email',
-                                type: 'forgotEmail',
-                              ),
+                                  upperRoom: 20,
+                                  lowerRoom: 20,
+                                  hintText: 'email',
+                                  type: 'forgotEmail',
+                                  controller: null),
                               InkWell(
                                 child: Container(
                                   height: 60,
@@ -292,6 +304,7 @@ class _SignInScreenState extends State<SignInScreen> {
     required double lowerRoom,
     required String hintText,
     required String type,
+    required var controller,
   }) {
     return Padding(
       padding: EdgeInsets.fromLTRB(0, upperRoom, 0, lowerRoom),
@@ -305,6 +318,7 @@ class _SignInScreenState extends State<SignInScreen> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: TextFormField(
+            controller: controller,
             cursorColor: const Color.fromARGB(255, 9, 40, 66),
             cursorHeight: 40,
             obscureText: type == 'password' && obscure == true ? true : false,

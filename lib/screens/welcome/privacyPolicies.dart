@@ -21,7 +21,7 @@ class Policy extends StatelessWidget {
               stretch: true,
               expandedHeight: screenHeight * 0.3,
               title: Text(
-                (type == 'privacy') ? 'pp_txt0' : 'sus_txt9',
+                (type == 'privacy') ? 'Policy Statement' : 'Terms of use',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               floating: true,

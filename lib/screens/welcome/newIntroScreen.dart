@@ -39,7 +39,10 @@ class _NewIntroScreenState extends State<NewIntroScreen> {
             child: PageView(
               controller: _pageController,
               children: [
-                _buildIntroMsg(textTheme: textTheme!, msg: 'is_txt0'),
+                _buildIntroMsg(
+                    textTheme: textTheme!,
+                    msg:
+                        'Get expert guidance to navigate your project work like a pro and achieve success with ease.'),
                 _buildIntroMsg(textTheme: textTheme, msg: 'is_txt1'),
                 _buildIntroMsg(textTheme: textTheme, msg: 'is_txt2'),
               ],
@@ -55,7 +58,7 @@ class _NewIntroScreenState extends State<NewIntroScreen> {
               ),
               child: const Center(
                 child: Text(
-                  'is_txt3',
+                  'Get Started',
                   style: TextStyle(
                     color: Colors.tealAccent,
                   ),

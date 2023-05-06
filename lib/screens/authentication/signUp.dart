@@ -339,7 +339,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           style: TextStyle(color: Colors.black),
                           children: [
                             TextSpan(
-                              text: 'sus_txt0',
+                              text: 'Let\'s go!\n\n',
                               style: TextStyle(
                                 color: Colors.tealAccent,
                                 fontSize: 30,
@@ -347,7 +347,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                             TextSpan(
-                              text: 'sus_txt1',
+                              text: 'Fill in you details to get started.',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
@@ -360,13 +360,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       _buildTextField(
                           upperRoom: 20,
                           lowerRoom: 20,
-                          hintText: 'sus_txt3',
+                          hintText: 'email',
                           type: 'email',
                           controller: emailController),
                       _buildTextField(
                           upperRoom: 0,
                           lowerRoom: 20,
-                          hintText: 'sus_txt4',
+                          hintText: 'Password',
                           type: 'password',
                           controller: passwordController),
                       _buildTextField(
@@ -385,7 +385,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           child: const Center(
                             child: Text(
-                              'sus_txt5',
+                              'Create Account',
                               style: TextStyle(
                                 color: Color.fromARGB(255, 9, 40, 66),
                                 fontWeight: FontWeight.bold,
@@ -426,7 +426,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: Row(
                             children: [
                               const Text(
-                                'sus_txt6',
+                                'already have an account,',
                                 style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.white70,
@@ -443,7 +443,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   );
                                 },
                                 child: const Text(
-                                  'sus_txt7',
+                                  'Log in',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
@@ -463,7 +463,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             const Text(
-                              'sus_txt8',
+                              'By logging in, I agree to the',
                               style: TextStyle(
                                 color: Colors.white70,
                                 fontSize: 15,
@@ -495,7 +495,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                   ),
                                   const Text(
-                                    'sus_txt10',
+                                    'and',
                                     style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 15,
@@ -513,7 +513,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       );
                                     },
                                     child: const Text(
-                                      'sus_txt11',
+                                      'privacy policy',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
@@ -547,6 +547,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(20)),
         child: InternationalPhoneNumberInput(
+          textFieldController: phoneController,
           validator: (p0) {
             if (p0!.isEmpty) {
               return 'enter phone number';

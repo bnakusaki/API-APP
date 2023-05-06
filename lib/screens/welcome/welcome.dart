@@ -56,7 +56,7 @@ class WelcomeScreen extends StatelessWidget {
                       child: Semantics(
                         readOnly: true,
                         child: _buildPrivacyMessage(
-                          message: 'ws_txt0',
+                          message: 'We value your privacy',
                           textStyle: Theme.of(context).textTheme.titleLarge!,
                         ),
                       ),
@@ -68,7 +68,8 @@ class WelcomeScreen extends StatelessWidget {
                     Semantics(
                       readOnly: true,
                       child: _buildPrivacyMessage(
-                        message: 'ws_txt1',
+                        message:
+                            'Your privacy matters to us. To offer a personalized experience, we gather certain personal data.',
                         textStyle: Theme.of(context).textTheme.bodyMedium!,
                       ),
                     ),
@@ -89,7 +90,7 @@ class WelcomeScreen extends StatelessWidget {
                               );
                             },
                             child: Text(
-                              'ws_txt2',
+                              'Read more >',
                               style: GoogleFonts.delius(
                                 color: const Color.fromARGB(255, 9, 40, 66),
                                 fontSize: 20,
@@ -115,7 +116,7 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                           child: const Center(
                             child: Text(
-                              'ws_txt3',
+                              'Let\'s start',
                               style: TextStyle(
                                 fontFamily: 'Nunito_Sans',
                                 color: Colors.tealAccent,
