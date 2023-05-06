@@ -292,8 +292,11 @@
 /// below is a tweek for an assignment.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// ignore_for_file: void_checks
+
 import 'package:apiapp/screens/authentication/signIn.dart';
 import 'package:apiapp/screens/welcome/privacyPolicies.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
@@ -310,6 +313,9 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   bool obscure = true;
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -352,23 +358,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       _buildCountrySelector(),
                       _buildTextField(
-                        upperRoom: 20,
-                        lowerRoom: 20,
-                        hintText: 'sus_txt3',
-                        type: 'email',
-                      ),
+                          upperRoom: 20,
+                          lowerRoom: 20,
+                          hintText: 'sus_txt3',
+                          type: 'email',
+                          controller: emailController),
                       _buildTextField(
-                        upperRoom: 0,
-                        lowerRoom: 20,
-                        hintText: 'sus_txt4',
-                        type: 'password',
-                      ),
+                          upperRoom: 0,
+                          lowerRoom: 20,
+                          hintText: 'sus_txt4',
+                          type: 'password',
+                          controller: passwordController),
                       _buildTextField(
-                        upperRoom: 0,
-                        lowerRoom: 20,
-                        hintText: 'Confirm password',
-                        type: 'confirmPassword',
-                      ),
+                          upperRoom: 0,
+                          lowerRoom: 20,
+                          hintText: 'Confirm password',
+                          type: 'confirmPassword',
+                          controller: null),
                       InkWell(
                         child: Container(
                           height: 60,
@@ -389,7 +395,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
-                            context.go('/homeScreen');
+                            // context.go('/homeScreen');
+                            print('created new accont');
+                            FirebaseAuth.instance
+                                .createUserWithEmailAndPassword(
+                                    email: emailController.text,
+                                    password: passwordController.text)
+                                .then((value) => context.go('/homeScreen'))
+                                .onError(
+                              (error, stackTrace) {
+                                print('error ${error.toString()}');
+                                return ScaffoldMessenger.of(context)
+                                    .showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                      'Failed to Create Account ', //${emailController.text.toString()}',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
                           }
                         },
                       ),
@@ -542,6 +568,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     required double lowerRoom,
     required String hintText,
     required String type,
+    required var controller,
   }) {
     return Padding(
       padding: EdgeInsets.fromLTRB(0, upperRoom, 0, lowerRoom),
@@ -555,6 +582,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: TextFormField(
+            controller: controller,
             cursorColor: const Color.fromARGB(255, 9, 40, 66),
             cursorHeight: 40,
             obscureText: ((type == 'password' || type == 'confirmPassword') &&
