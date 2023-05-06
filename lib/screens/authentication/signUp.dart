@@ -316,6 +316,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -374,7 +375,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           lowerRoom: 20,
                           hintText: 'Confirm password',
                           type: 'confirmPassword',
-                          controller: null),
+                          controller: confirmPasswordController),
                       InkWell(
                         child: Container(
                           height: 60,
@@ -569,7 +570,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     required double lowerRoom,
     required String hintText,
     required String type,
-    required var controller,
+    required TextEditingController controller,
   }) {
     return Padding(
       padding: EdgeInsets.fromLTRB(0, upperRoom, 0, lowerRoom),
@@ -586,10 +587,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             controller: controller,
             cursorColor: const Color.fromARGB(255, 9, 40, 66),
             cursorHeight: 40,
-            obscureText: ((type == 'password' || type == 'confirmPassword') &&
-                    obscure == true)
-                ? true
-                : false,
+            obscureText:
+                ((type == 'password') && obscure == true) ? true : false,
             style: const TextStyle(
               fontSize: 20,
               color: Color.fromARGB(255, 9, 40, 66),
@@ -598,14 +597,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 border: InputBorder.none,
                 hintText: hintText,
                 alignLabelWithHint: true,
-                suffixIcon: type == 'password' || type == 'confirmPassword'
+                suffixIcon: type == 'password'
                     ? IconButton(
                         onPressed: () {
                           setState(() {
                             obscure = !obscure;
                           });
                         },
-                        icon: const Icon(Icons.remove_red_eye))
+                        icon: obscure
+                            ? const Icon(Icons.remove_red_eye)
+                            : const Icon(Icons.remove_red_eye_outlined))
                     : null),
             validator: (value) {
               if (type == 'email' && EmailValidator.validate(value!) == false) {
@@ -614,8 +615,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 return 'enter phone number';
               } else if (type == 'password' && value!.isEmpty) {
                 return 'enter password';
-              } else if (type == 'confirmPassword' && value!.isEmpty) {
-                return 'Confirm password';
+              } else if (type == 'confirmPassword' &&
+                  value != passwordController.text) {
+                return 'Passwords doesn\'t match';
               }
               return null;
             },

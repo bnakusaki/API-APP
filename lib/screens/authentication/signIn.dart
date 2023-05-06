@@ -19,6 +19,7 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController forgotEmailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -192,7 +193,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     ),
                                   ),
                                   const Text(
-                                    'sus_txt10',
+                                    'and',
                                     style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 15,
@@ -203,12 +204,12 @@ class _SignInScreenState extends State<SignInScreen> {
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const Policy(type: 'policy'),
+                                              const Policy(type: 'privacy'),
                                         ),
                                       );
                                     },
                                     child: const Text(
-                                      'sus_txt11',
+                                      'Privacy Policies',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
@@ -261,7 +262,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                   lowerRoom: 20,
                                   hintText: 'email',
                                   type: 'forgotEmail',
-                                  controller: null),
+                                  controller: forgotEmailController),
                               InkWell(
                                 child: Container(
                                   height: 60,
@@ -282,7 +283,31 @@ class _SignInScreenState extends State<SignInScreen> {
                                 ),
                                 onTap: () {
                                   if (_formKey.currentState!.validate()) {
-                                    context.go('/homeScreen');
+                                    // context.go('/homeScreen');
+                                    FirebaseAuth.instance
+                                        .sendPasswordResetEmail(
+                                            email: forgotEmailController.text)
+                                        .then((value) {
+                                      setState(() {
+                                        showPrompt = false;
+                                        ScaffoldMessenger.of(context)
+                                            .showMaterialBanner(
+                                          MaterialBanner(
+                                            content: const Text(
+                                                'Check email for reset instructions'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  ScaffoldMessenger.of(context)
+                                                      .hideCurrentMaterialBanner();
+                                                },
+                                                child: const Text('Dismiss'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      });
+                                    });
                                   }
                                 },
                               ),
