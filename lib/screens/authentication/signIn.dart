@@ -1,5 +1,5 @@
 import 'package:apiapp/screens/welcome/privacyPolicies.dart';
-import 'package:easy_localization/easy_localization.dart';
+// import 'package:easy_localization/easy_localization.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -33,20 +33,20 @@ class _SignInScreenState extends State<SignInScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       RichText(
-                        text: TextSpan(
-                          style: const TextStyle(color: Colors.black),
+                        text: const TextSpan(
+                          style: TextStyle(color: Colors.black),
                           children: [
                             TextSpan(
-                              text: 'sis_txt0'.tr(),
-                              style: const TextStyle(
+                              text: 'sis_txt0',
+                              style: TextStyle(
                                 color: Colors.tealAccent,
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             TextSpan(
-                              text: 'sus_txt1'.tr(),
-                              style: const TextStyle(
+                              text: 'sus_txt1',
+                              style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
                               ),
@@ -57,13 +57,13 @@ class _SignInScreenState extends State<SignInScreen> {
                       _buildTextField(
                         upperRoom: 130,
                         lowerRoom: 20,
-                        hintText: 'sus_txt3'.tr(),
+                        hintText: 'sus_txt3',
                         type: 'email',
                       ),
                       _buildTextField(
                         upperRoom: 0,
                         lowerRoom: 8,
-                        hintText: 'sus_txt4'.tr(),
+                        hintText: 'sus_txt4',
                         type: 'password',
                       ),
                       SizedBox(
@@ -76,10 +76,10 @@ class _SignInScreenState extends State<SignInScreen> {
                                 showPrompt = true;
                               });
                             },
-                            child: Text(
-                              'sis_txt1'.tr(),
+                            child: const Text(
+                              'sis_txt1',
                               textAlign: TextAlign.right,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
                               ),
@@ -95,10 +95,10 @@ class _SignInScreenState extends State<SignInScreen> {
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.tealAccent,
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Text(
-                              'sus_txt7'.tr(),
-                              style: const TextStyle(
+                              'sus_txt7',
+                              style: TextStyle(
                                 color: Color.fromARGB(255, 9, 40, 66),
                                 fontWeight: FontWeight.bold,
                               ),
@@ -117,9 +117,9 @@ class _SignInScreenState extends State<SignInScreen> {
                           width: screenWidth - 80,
                           child: Row(
                             children: [
-                              Text(
-                                'sis_txt2'.tr(),
-                                style: const TextStyle(
+                              const Text(
+                                'sis_txt2',
+                                style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.white70,
                                 ),
@@ -128,9 +128,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: Text(
-                                  'sis_txt3'.tr(),
-                                  style: const TextStyle(
+                                child: const Text(
+                                  'sis_txt3',
+                                  style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
                                   ),
@@ -148,9 +148,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              'sus_txt8'.tr(),
-                              style: const TextStyle(
+                            const Text(
+                              'sus_txt8',
+                              style: TextStyle(
                                 color: Colors.white70,
                                 fontSize: 15,
                               ),
@@ -170,18 +170,18 @@ class _SignInScreenState extends State<SignInScreen> {
                                         ),
                                       );
                                     },
-                                    child: Text(
-                                      'Terms of use'.tr(),
-                                      style: const TextStyle(
+                                    child: const Text(
+                                      'Terms of use',
+                                      style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 15,
                                       ),
                                     ),
                                   ),
-                                  Text(
-                                    'sus_txt10'.tr(),
-                                    style: const TextStyle(
+                                  const Text(
+                                    'sus_txt10',
+                                    style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 15,
                                     ),
@@ -195,9 +195,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                         ),
                                       );
                                     },
-                                    child: Text(
-                                      'sus_txt11'.tr(),
-                                      style: const TextStyle(
+                                    child: const Text(
+                                      'sus_txt11',
+                                      style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 15,
@@ -258,10 +258,10 @@ class _SignInScreenState extends State<SignInScreen> {
                                     borderRadius: BorderRadius.circular(20),
                                     color: Colors.tealAccent,
                                   ),
-                                  child: Center(
+                                  child: const Center(
                                     child: Text(
-                                      'Send'.tr(),
-                                      style: const TextStyle(
+                                      'Send',
+                                      style: TextStyle(
                                         color: Color.fromARGB(255, 9, 40, 66),
                                         fontWeight: FontWeight.bold,
                                       ),

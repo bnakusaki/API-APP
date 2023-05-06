@@ -1,8 +1,8 @@
 import 'package:apiapp/screens/welcome/privacyPolicies.dart';
-import 'package:easy_localization/easy_localization.dart';
+// import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:apiapp/main.dart' as main;
+// import 'package:apiapp/main.dart' as main;
 import 'package:go_router/go_router.dart';
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -25,7 +25,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    context.setLocale(main.localeState);
+    // context.setLocale(main.localeState);
 
     return Container(
       decoration: const BoxDecoration(
@@ -56,7 +56,7 @@ class WelcomeScreen extends StatelessWidget {
                       child: Semantics(
                         readOnly: true,
                         child: _buildPrivacyMessage(
-                          message: 'ws_txt0'.tr(),
+                          message: 'ws_txt0',
                           textStyle: Theme.of(context).textTheme.titleLarge!,
                         ),
                       ),
@@ -68,7 +68,7 @@ class WelcomeScreen extends StatelessWidget {
                     Semantics(
                       readOnly: true,
                       child: _buildPrivacyMessage(
-                        message: 'ws_txt1'.tr(),
+                        message: 'ws_txt1',
                         textStyle: Theme.of(context).textTheme.bodyMedium!,
                       ),
                     ),
@@ -89,7 +89,7 @@ class WelcomeScreen extends StatelessWidget {
                               );
                             },
                             child: Text(
-                              'ws_txt2'.tr(),
+                              'ws_txt2',
                               style: GoogleFonts.delius(
                                 color: const Color.fromARGB(255, 9, 40, 66),
                                 fontSize: 20,
@@ -113,10 +113,10 @@ class WelcomeScreen extends StatelessWidget {
                             color: const Color.fromARGB(255, 9, 40, 66),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Text(
-                              'ws_txt3'.tr(),
-                              style: const TextStyle(
+                              'ws_txt3',
+                              style: TextStyle(
                                 fontFamily: 'Nunito_Sans',
                                 color: Colors.tealAccent,
                                 fontSize: 25,

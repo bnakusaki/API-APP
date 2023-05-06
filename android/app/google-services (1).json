@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "202031400462",
-    "project_id": "signup-page-beta",
-    "storage_bucket": "signup-page-beta.appspot.com"
+    "project_number": "1038934257545",
+    "project_id": "authentication-demo-bab8f",
+    "storage_bucket": "authentication-demo-bab8f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:202031400462:android:50f7b507aa3e421f629e5f",
+        "mobilesdk_app_id": "1:1038934257545:android:bf4ca8020e0d9b6eae3b58",
         "android_client_info": {
           "package_name": "com.akufel.apiapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "202031400462-70h8lk31kqdltjh0kjqstsu3r2skdvaf.apps.googleusercontent.com",
+          "client_id": "1038934257545-s6rimte1ktj8182hss4l2qluhrkpj4le.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCJQ5YpVu4EYE5Je2Rn73B0SEVoRZ0iCsY"
+          "current_key": "AIzaSyBOlCKUQtTbvdV84QpSdKH27lCr3yZM28c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "202031400462-70h8lk31kqdltjh0kjqstsu3r2skdvaf.apps.googleusercontent.com",
+              "client_id": "1038934257545-s6rimte1ktj8182hss4l2qluhrkpj4le.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

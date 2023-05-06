@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:apiapp/main.dart' as main;
+// import 'package:easy_localization/easy_localization.dart';
+// import 'package:apiapp/main.dart' as main;
 
 class Policy extends StatelessWidget {
   final String type;
@@ -9,7 +9,7 @@ class Policy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    context.setLocale(main.localeState);
+    // context.setLocale(main.localeState);
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 9, 40, 66),
       body: Scrollbar(
@@ -21,7 +21,7 @@ class Policy extends StatelessWidget {
               stretch: true,
               expandedHeight: screenHeight * 0.3,
               title: Text(
-                (type == 'privacy') ? 'pp_txt0'.tr() : 'sus_txt9'.tr(),
+                (type == 'privacy') ? 'pp_txt0' : 'sus_txt9',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               floating: true,

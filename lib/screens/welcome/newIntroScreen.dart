@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+// import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -53,10 +53,10 @@ class _NewIntroScreenState extends State<NewIntroScreen> {
                 color: const Color.fromARGB(255, 9, 40, 66),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
-                  'is_txt3'.tr(),
-                  style: const TextStyle(
+                  'is_txt3',
+                  style: TextStyle(
                     color: Colors.tealAccent,
                   ),
                 ),
@@ -79,7 +79,7 @@ class _NewIntroScreenState extends State<NewIntroScreen> {
     return Column(children: [
       Expanded(
         child: Text(
-          msg.tr(),
+          msg,
           style: textTheme,
         ),
       ),

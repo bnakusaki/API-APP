@@ -294,7 +294,7 @@
 
 import 'package:apiapp/screens/authentication/signIn.dart';
 import 'package:apiapp/screens/welcome/privacyPolicies.dart';
-import 'package:easy_localization/easy_localization.dart';
+// import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:go_router/go_router.dart';
@@ -329,20 +329,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       RichText(
-                        text: TextSpan(
-                          style: const TextStyle(color: Colors.black),
+                        text: const TextSpan(
+                          style: TextStyle(color: Colors.black),
                           children: [
                             TextSpan(
-                              text: 'sus_txt0'.tr(),
-                              style: const TextStyle(
+                              text: 'sus_txt0',
+                              style: TextStyle(
                                 color: Colors.tealAccent,
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             TextSpan(
-                              text: 'sus_txt1'.tr(),
-                              style: const TextStyle(
+                              text: 'sus_txt1',
+                              style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
                               ),
@@ -354,19 +354,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       _buildTextField(
                         upperRoom: 20,
                         lowerRoom: 20,
-                        hintText: 'sus_txt3'.tr(),
+                        hintText: 'sus_txt3',
                         type: 'email',
                       ),
                       _buildTextField(
                         upperRoom: 0,
                         lowerRoom: 20,
-                        hintText: 'sus_txt4'.tr(),
+                        hintText: 'sus_txt4',
                         type: 'password',
                       ),
                       _buildTextField(
                         upperRoom: 0,
                         lowerRoom: 20,
-                        hintText: 'Confirm password'.tr(),
+                        hintText: 'Confirm password',
                         type: 'confirmPassword',
                       ),
                       InkWell(
@@ -377,10 +377,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.tealAccent,
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Text(
-                              'sus_txt5'.tr(),
-                              style: const TextStyle(
+                              'sus_txt5',
+                              style: TextStyle(
                                 color: Color.fromARGB(255, 9, 40, 66),
                                 fontWeight: FontWeight.bold,
                               ),
@@ -399,9 +399,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           width: screenWidth - 80,
                           child: Row(
                             children: [
-                              Text(
-                                'sus_txt6'.tr(),
-                                style: const TextStyle(
+                              const Text(
+                                'sus_txt6',
+                                style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.white70,
                                 ),
@@ -416,9 +416,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                   );
                                 },
-                                child: Text(
-                                  'sus_txt7'.tr(),
-                                  style: const TextStyle(
+                                child: const Text(
+                                  'sus_txt7',
+                                  style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
                                   ),
@@ -436,9 +436,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              'sus_txt8'.tr(),
-                              style: const TextStyle(
+                            const Text(
+                              'sus_txt8',
+                              style: TextStyle(
                                 color: Colors.white70,
                                 fontSize: 15,
                               ),
@@ -459,18 +459,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         ),
                                       );
                                     },
-                                    child: Text(
-                                      'Terms of use'.tr(),
-                                      style: const TextStyle(
+                                    child: const Text(
+                                      'Terms of use',
+                                      style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 15,
                                       ),
                                     ),
                                   ),
-                                  Text(
-                                    'sus_txt10'.tr(),
-                                    style: const TextStyle(
+                                  const Text(
+                                    'sus_txt10',
+                                    style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 15,
                                     ),
@@ -486,9 +486,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         ),
                                       );
                                     },
-                                    child: Text(
-                                      'sus_txt11'.tr(),
-                                      style: const TextStyle(
+                                    child: const Text(
+                                      'sus_txt11',
+                                      style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                         fontSize: 15,
