@@ -4,6 +4,10 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+final FirebaseAuth auth = FirebaseAuth.instance;
+final GoogleSignIn googleSignIn = GoogleSignIn();
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -13,6 +17,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  String? status;
   final _formKey = GlobalKey<FormState>();
   bool obscure = true;
   bool showPrompt = false;
@@ -20,6 +25,33 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController forgotEmailController = TextEditingController();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    status = 'not authenticated';
+  }
+
+  signInAnon() async {
+    User user = (await auth
+        .signInAnonymously()
+        .then((value) => context.go('/homeScreen'))) as User;
+    if (user.isAnonymous) {
+      setState(() {
+        status = 'signed in anonymously';
+      });
+    } else {
+      status = 'sign in failed';
+    }
+  }
+
+  signOut() async {
+    await auth.signOut();
+    setState(() {
+      status = 'signed out';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -152,6 +184,28 @@ class _SignInScreenState extends State<SignInScreen> {
                             ],
                           ),
                         ),
+                      ),
+                      InkWell(
+                        child: Container(
+                          height: 60,
+                          width: screenWidth - 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.tealAccent,
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'Anonymous Login',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 9, 40, 66),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          signInAnon();
+                        },
                       ),
                       const SizedBox(
                         height: 131,
