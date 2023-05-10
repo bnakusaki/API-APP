@@ -148,7 +148,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           if (_formKey.currentState!.validate()) {
                             // context.go('/homeScreen');
 
-                            FirebaseAuth.instance
+                            auth
                                 .signInWithEmailAndPassword(
                                     email: emailController.text,
                                     password: passwordController.text)
@@ -204,7 +204,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ),
                         onTap: () {
-                          signInAnon();
+                          // signInAnon();
+                          context.go('/homeScreen');
                         },
                       ),
                       const SizedBox(
