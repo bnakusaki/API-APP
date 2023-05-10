@@ -204,8 +204,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ),
                         onTap: () {
-                          // signInAnon();
-                          context.go('/homeScreen');
+                          signInAnon();
                         },
                       ),
                       const SizedBox(
